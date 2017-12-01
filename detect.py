@@ -33,8 +33,10 @@ def detect(filename, cascade_file = "./lbpcascade_animeface.xml"):
         dst = image[y:y+h, x:x+w]
         cv2.imwrite(os.path.join(TARGET_DIR, str(i)+'.jpg'), dst)
         i = i + 1
-    cv2.imshow("AnimeFaceDetect", image)
-    cv2.waitKey(0)
+    cv2.imwrite('./dist/' +filename.split('/')[-1], image)
+    cv2.destroyAllWindows()
+    # cv2.imshow("AnimeFaceDetect", image)
+    # cv2.waitKey(0)
 if len(sys.argv) != 2:
     sys.stderr.write("usage: detect.py <filename>\n")
     sys.exit(-1)
