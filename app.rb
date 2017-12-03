@@ -12,19 +12,23 @@ get '/' do
 end
 
 post '/image_upload' do
-	before = Dir.glob("./original_image/*")#画像アップロード前のファイルの中身取得
-	name = params[:images]['filename']# ファイル名の取得
-	kakutyousi = File.extname(name)#拡張子の取得
-	image_upload_local(params[:images])#画像アップロード
-	now = Dir.glob("./original_image/*")#画像アップロード後のファイルの中身取得
-	path = now - before
-	command = "python detect.py #{path[0].to_s}"
+	# before = Dir.glob("./original_image/*")#画像アップロード前のファイルの中身取得
+	# name = params[:images]['filename']# ファイル名の取得
+	# kakutyousi = File.extname(name)#拡張子の取得
+	name = image_upload_local(params[:images])#画像アップロード
+	# now = Dir.glob("./original_image/*")#画像アップロード後のファイルの中身取得
+	# files = now - before
+	command = "python detect.py ./original_image/#{name}"
+	puts name
 	a = system(command)
 
 	# なるほどわからん...
+	# filesはリストだから各要素に対して実行する
 	image = Image.create(
-		file_name: params[:file_name],
-		)
+		file_name: name
+	)
+
+	# path = ARGV[0]
 	redirect '/'
 end
 
