@@ -17,10 +17,11 @@ def image_upload_local(img)
     kakutyoushi = File.extname(ext)
     t = Time.new
     times = t.strftime("%Y-%m-%d%H:%M:%S")
-    img_name = "#{times + kakutyoushi}"
-    puts img_name
+    puts img['filename']
+    img_name = "#{times}_#{img['filename']}#{kakutyoushi}"
+    return img_name
     #puts img_name
-    p "="*20
+    # p "="*20
     logger.info ext
     img_path = "/images/#{img_name}"
 
