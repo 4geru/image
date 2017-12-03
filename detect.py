@@ -9,13 +9,12 @@ def GetFileNum(sInFdr):
     s=0
     for root, dirs, files in os.walk(sInFdr):
         s+=len(files)
-        print(s)
     return s
 def detect(filename, cascade_file = "./lbpcascade_animeface.xml"):
-    i = GetFileNum(os.getcwd()+'/images')
+    i = GetFileNum(os.getcwd()+'/image')
     if not os.path.isfile(cascade_file):
         raise RuntimeError("%s: not found" % cascade_file)
-    TARGET_DIR = os.getcwd()+'/images'
+    TARGET_DIR = os.getcwd()+'/image'
     if not os.path.isdir(TARGET_DIR):
         os.makedirs(TARGET_DIR)
 
@@ -33,6 +32,10 @@ def detect(filename, cascade_file = "./lbpcascade_animeface.xml"):
         dst = image[y:y+h, x:x+w]
         cv2.imwrite(os.path.join(TARGET_DIR, str(i)+'.jpg'), dst)
         i = i + 1
+        print i
+    #cv2.imshow("AnimeFaceDetect", image)
+    #cv2.waitKey(0)
+
 if len(sys.argv) != 2:
     sys.stderr.write("usage: detect.py <filename>\n")
     sys.exit(-1)

@@ -16,14 +16,15 @@ def image_upload_local(img)
     ext = File.basename(img[:filename])
     kakutyoushi = File.extname(ext)
     t = Time.new
-    times = t.strftime("%Y-%m-%d %H:%M:%S")
+    times = t.strftime("%Y-%m-%d%H:%M:%S")
     img_name = "#{times + kakutyoushi}"
     puts img_name
+    #puts img_name
     p "="*20
     logger.info ext
     img_path = "/images/#{img_name}"
 
-    save_path = File.join('public', 'images', img_name)
+    save_path = File.join('original_image', img_name)
 
     File.open(save_path, 'wb') do |f|
      logger.info "Temp file: #{img[:tempfile]}"
