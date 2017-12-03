@@ -18,12 +18,14 @@ def image_upload_local(img)
     t = Time.new
     times = t.strftime("%Y-%m-%d%H:%M:%S")
     puts img['filename']
-    img_name = "#{times}_#{img['filename']}#{kakutyoushi}"
-    return img_name
+    names = File.basename(img['filename'],'.*')
+    # img_name = "#{times}_#{img['filename']}#{kakutyoushi}"
+    img_name = "#{times}_#{names}#{kakutyoushi}"
+    #return img_name
     #puts img_name
     # p "="*20
     logger.info ext
-    img_path = "/images/#{img_name}"
+    img_path = "./original_image/#{img_name}"
 
     save_path = File.join('original_image', img_name)
 
