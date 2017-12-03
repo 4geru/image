@@ -1,3 +1,4 @@
+require 'date'
 def image_upload(img)
   logger.info "upload now"
   tempfile = img[:tempfile]
@@ -13,7 +14,11 @@ def image_upload_local(img)
   if img
     logger.info img
     ext = File.basename(img[:filename])
-    img_name = "#{ext}"
+    kakutyoushi = File.extname(ext)
+    t = Time.new
+    times = t.strftime("%Y-%m-%d %H:%M:%S")
+    img_name = "#{times + kakutyoushi}"
+    puts img_name
     p "="*20
     logger.info ext
     img_path = "/images/#{img_name}"
