@@ -5,8 +5,7 @@ require './image_upload.rb'
 require 'sinatra/activerecord'
 require './models'
 require 'fileutils'
-require "date"
-require 'open3'
+
 get '/' do
 	erb :index
 end
@@ -45,9 +44,16 @@ post '/image_upload' do
 	)
 
 	# path = ARGV[0]
-	redirect '/'
+	redirect '/image'
 end
 
+get '/image' do
+	erb :image
+end
+
+get '/contact' do
+	erb :contact
+end
 # get '/image' do
 # 	before = Dir.glob("./images/*")
 # 	path = ARGV[0]
