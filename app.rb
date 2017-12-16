@@ -12,8 +12,6 @@ end
 
 post '/image_upload' do
 
-	# 画像アップロード前のファイルの中身取得
-	before = Dir.glob("./original_image/*")
 
 	# name = params[:images]['filename']# ファイル名の取得
 	# kakutyousi = File.extname(name)#拡張子の取得
@@ -21,18 +19,26 @@ post '/image_upload' do
 	# 画像アップロード
 	names = image_upload_local(params[:images])
 	# 画像アップロード後のファイルの中身取得
-	now = Dir.glob("./original_image/*")
+
+	# 画像アップロード前のファイルの中身取得
+	before = Dir.glob("./image/*")
 
 
-	# これでファイルのpathを無理やり取得
-	files = now - before
-	file_path = files[0].to_s
-	puts file_path
-
+	file_path = Dir.glob("./original_image/*")[-1]
 	# 外部コマンド実行
 	command = "python detect.py #{file_path}"
 	puts command
 	system(command)
+
+	now = Dir.glob("./image/*")
+
+	# これでファイルのpathを無理やり取得
+	files = now - before
+	file_path = files[0].to_s
+	# puts before
+	# puts now
+	puts files
+
 
 	#名前をdbにぶち込みたいので名前だけを抜き取る
 	file_path[0..16] = ""
