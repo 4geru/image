@@ -1,11 +1,11 @@
-current directory: /Users/sora/deep_learning/learning/vendor/bundle/gems/bcrypt-3.1.11/ext/mri
-/Users/sora/.rbenv/versions/2.4.1/bin/ruby -r ./siteconf20171119-16540-chcq4c.rb extconf.rb
+current directory: /Users/sora/Downloads/image-master2/vendor/bundle/gems/bcrypt-3.1.11/ext/mri
+/Users/sora/.rbenv/versions/2.4.1/bin/ruby -r ./siteconf20171216-921-axr06e.rb extconf.rb
 creating Makefile
 
-current directory: /Users/sora/deep_learning/learning/vendor/bundle/gems/bcrypt-3.1.11/ext/mri
+current directory: /Users/sora/Downloads/image-master2/vendor/bundle/gems/bcrypt-3.1.11/ext/mri
 make "DESTDIR=" clean
 
-current directory: /Users/sora/deep_learning/learning/vendor/bundle/gems/bcrypt-3.1.11/ext/mri
+current directory: /Users/sora/Downloads/image-master2/vendor/bundle/gems/bcrypt-3.1.11/ext/mri
 make "DESTDIR="
 compiling bcrypt_ext.c
 compiling crypt.c
@@ -14,6 +14,6 @@ compiling crypt_gensalt.c
 compiling wrapper.c
 linking shared-object bcrypt_ext.bundle
 
-current directory: /Users/sora/deep_learning/learning/vendor/bundle/gems/bcrypt-3.1.11/ext/mri
+current directory: /Users/sora/Downloads/image-master2/vendor/bundle/gems/bcrypt-3.1.11/ext/mri
 make "DESTDIR=" install
-/usr/bin/install -c -m 0755 bcrypt_ext.bundle ./.gem.20171119-16540-q9mtvb
+/usr/bin/install -c -m 0755 bcrypt_ext.bundle ./.gem.20171216-921-19ts9ro
