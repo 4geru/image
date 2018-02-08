@@ -25,9 +25,9 @@ def image_upload_local(img)
     #puts img_name
     # p "="*20
     logger.info ext
-    img_path = "./original_image/#{img_name}"
+    img_path = "./public/original_image/#{img_name}"
 
-    save_path = File.join('original_image', img_name)
+    save_path = File.join('public/original_image', img_name)
 
     File.open(save_path, 'wb') do |f|
      logger.info "Temp file: #{img[:tempfile]}"

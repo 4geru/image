@@ -21,20 +21,27 @@ post '/image_upload' do
 	# 画像アップロード後のファイルの中身取得
 
 	# 画像アップロード前のファイルの中身取得
-	before = Dir.glob("./image/*")
+	before = Dir.glob("./public/image/*")
 
 
-	file_path = Dir.glob("./original_image/*")[-1]
+	file_path = Dir.glob("./public/original_image/*")[-1]
+	puts file_path
+	Image.create({file_name: file_path})
+	original = Image.last
 	# 外部コマンド実行
 	command = "python detect.py #{file_path}"
 	puts command
 	system(command)
 
-	now = Dir.glob("./image/*")
+	now = Dir.glob("./public/image/*")
 
 	# これでファイルのpathを無理やり取得
 	files = now - before
+	for file in files do
+		Image.create({file_name: file, image_id: original.id})
+	end
 	file_path = files[0].to_s
+
 	# puts before
 	# puts now
 	puts files
@@ -68,6 +75,11 @@ end
 
 get '/contact' do
 	erb :contact
+end
+
+get '/view/:id' do
+	@image = Image.find(params[:id])
+	erb :view
 end
 # get '/image' do
 # 	before = Dir.glob("./images/*")
