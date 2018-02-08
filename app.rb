@@ -41,13 +41,22 @@ post '/image_upload' do
 
 
 	#名前をdbにぶち込みたいので名前だけを抜き取る
-	file_path[0..16] = ""
-	puts file_path
 
-	# filesはリストだから各要素に対して実行する
 	image = Image.create(
 		file_name: file_path
 	)
+	id = Image.last.id
+
+	file_path[0..16] = ""
+	puts file_path
+	for file in files
+		Image.create({
+			file_name: file,
+			image_id: id
+			})
+	end
+
+	# filesはリストだから各要素に対して実行する
 
 	# path = ARGV[0]
 	redirect '/image'
